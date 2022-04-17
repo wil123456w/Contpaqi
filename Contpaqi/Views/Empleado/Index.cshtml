@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Contpaqi.Models.Empleado.EmpleadoObj>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Empleado</h1>
+</br>
+<div class="row text-center">
+    <div class="col-md-4 text-center">
+        <a>
+            <button type="button" class="btn btn-primary" id="btnBusqueda">Busqueda</button>
+        </a>
+    </div>
+    <div class="col-md-4 text-center">
+        <a asp-action="Index">
+            <button type="button" class="btn btn-primary">Actualizar</button>
+        </a>
+    </div>
+    <div class="col-md-4 text-center">
+        <a asp-action="Create">
+            <button type="button" class="btn btn-primary">Crear</button>
+        </a>
+    </div>
+</div>
+<p>
+
+</p>
+</br>
+
+<div id="divBusqueda">
+    <div class="row">
+        <div class="col-md-4">
+            nombre
+            <input type="text" class="form-control" id="txtNombre" />
+        </div>
+        <div class="col-md-4">
+            RFC
+            <input type="text" class="form-control" id="txtRfc" />
+        </div>
+        <div class="col-md-4">
+            Estatus
+            @Html.DropDownList("LstEstatus", null, htmlAttributes: new { @class = "form-control",@id="idEstatus" })
+            @*<input type="text" class="form-control" id="Estatus" />*@
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-primary" id="buscarEmpleado">Buscar</button>
+        </div>
+    </div>
+</div>
+</br>
+
+<div id="partial1" class="container">
+    @await Html.PartialAsync("../_ViewEmpleado", Model)
+</div>
+    
+
+    <script>
+    $(document).ready(function () {
+        $('#divBusqueda').hide();
+        $("#btnBusqueda").click(function () {
+            $('#divBusqueda').show();
+        });
+
+        $('#buscarEmpleado').click(function () {
+            var txtNombre = $('#txtNombre').val();
+            var txtRfc = $('#txtRfc').val();
+            var idEstatus = $('#idEstatus').val();
+
+            $.ajax({
+                url: "@Url.Action("_ViewEmpleado")",
+                type: "Get",
+                datatype: "HTML",
+                data: { nombre: txtNombre, rfc: txtRfc, status: idEstatus },
+                success: function (data) {
+                    $("#partial1").html(data);
+                }
+            })
+            //$.ajax({
+            //    type: "GET",
+            //    url: "/Empleado/Index",
+            //    data: { nombre: "w", rfc: "", status: 1 },
+            //    dataType: "json",
+            //    error: function () {
+            //        alert("Error");
+            //    }
+            //});
+        });
+    });
+    </script>

@@ -1,0 +1,106 @@
+﻿@model Contpaqi.Models.Empleado.EmpleadoObj
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar</h1>
+
+<h4>Empleado</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="empleadoId" class="control-label"></label>
+                <input asp-for="empleadoId" class="form-control" />
+                <span asp-validation-for="empleadoId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="nombre" class="control-label"></label>
+                <input asp-for="nombre" class="form-control" disabled/>
+                <span asp-validation-for="nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apellidoPaterno" class="control-label"></label>
+                <input asp-for="apellidoPaterno" class="form-control" disabled/>
+                <span asp-validation-for="apellidoPaterno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apellidoMaterno" class="control-label"></label>
+                <input asp-for="apellidoMaterno" class="form-control" disabled/>
+                <span asp-validation-for="apellidoMaterno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="edad" class="control-label"></label>
+                <input asp-for="edad" class="form-control" disabled/>
+                <span asp-validation-for="edad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaNacimiento" class="control-label"></label>
+                <input asp-for="fechaNacimiento" class="form-control" disabled/>
+                <span asp-validation-for="fechaNacimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="generoId" class="control-label"></label>
+                @Html.DropDownList("LstGenero", null, htmlAttributes: new { @class = "form-control",@disabled=true })
+            </div>
+            <div class="form-group">
+                <label asp-for="estadoCivilId" class="control-label"></label>
+                @Html.DropDownList("LstEstadoCivil", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="rfc" class="control-label"></label>
+                <input asp-for="rfc" class="form-control" disabled/>
+                <span asp-validation-for="rfc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="direccion" class="control-label"></label>
+                <input asp-for="direccion" class="form-control" />
+                <span asp-validation-for="direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="email" class="control-label"></label>
+                <input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="telefono" class="control-label" disabled></label>
+                <input asp-for="telefono" class="form-control" />
+                <span asp-validation-for="telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="puestoId" class="control-label"></label>
+                @Html.DropDownList("LstPuesto", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+            @*<div class="form-group">
+                <label asp-for="estatusId" class="control-label"></label>
+                <input asp-for="estatusId" class="form-control" />
+                <span asp-validation-for="estatusId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="fechaAlta" class="control-label"></label>
+                <input asp-for="fechaAlta" class="form-control" disabled />
+                <span asp-validation-for="fechaAlta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaBaja" class="control-label"></label>
+                <input asp-for="fechaBaja" class="form-control" />
+                <span asp-validation-for="fechaBaja" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btn btn-primary" />                
+                <a asp-action="Index"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
